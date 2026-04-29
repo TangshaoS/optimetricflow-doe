@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: "OptimetricFlow DOE Engine (FlowSense DOE)"
+message: "If you use this project, please cite it using this metadata."
+type: software
+authors:
+  - family-names: "OptimetricFlow Team"
+repository-code: "https://github.com/TangshaoS/optimetricflow-doe"
+url: "https://github.com/TangshaoS/optimetricflow-doe"
+license: "MIT"
+version: "0.1.0"
+date-released: 2026-04-29
+keywords:
+  - design of experiments
+  - doe
+  - bayesian optimization
+  - response surface methodology
+  - qbd
+  - bioprocess

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flowsense-doe"
+version = "0.1.0"
+description = "Industrial Design of Experiments (DOE) & Optimization Toolkit"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "OptimetricFlow Team"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+    "numpy>=1.20.0",
+    "pandas>=1.3.0",
+    "scipy>=1.7.0",
+    "scikit-learn>=1.0.0",
+    "matplotlib>=3.4.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/TangshaoS/optimetricflow-doe"
+"Repository" = "https://github.com/TangshaoS/optimetricflow-doe"
+"OptimetricFlow SaaS" = "https://optimetricflow.cn" 
+"OptimetricFlow SaaS" = "https://optimetricflow.com" (server in US, coming soom)
