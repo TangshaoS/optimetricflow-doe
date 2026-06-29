@@ -6,7 +6,9 @@
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![OptimetricFlow](https://img.shields.io/badge/Official-OptimetricFlow-blueviolet)](https://optimetricflow.cn)
 
-**FlowSense DOE** is a powerful Python package designed for industrial Design of Experiments (DOE), response surface analysis, and Bayesian next-experiment suggestion. It serves as the open-source analytical engine powering the [OptimetricFlow](https://optimetricflow.cn) platform.
+**FlowSense DOE** is a Python package for industrial Design of Experiments (DOE), response surface analysis, and Bayesian next-experiment suggestion. It is also used in experimental workflows within [OptimetricFlow](https://optimetricflow.cn).
+
+> **Maintenance:** This project is actively maintained as a core research module of OptimetricFlow.
 
 ![FlowSense DOE Preview](assets/preview.png)
 
@@ -85,12 +87,28 @@ print("Suggested experiment:", next_point["suggestion"])
 
 ---
 
+## 📊 Real Usage Example
+
+Synthetic bioprocess dataset (temperature, pH, stir rate → antibody titer). Four corner screening runs, then Bayesian optimization suggests the next experiment:
+
+![Optimization example](assets/optimization_example.png)
+
+**Reproduce locally:**
+
+```bash
+python examples/bioprocess_optimization.py
+```
+
+This writes `examples/data/synthetic_fermentation.csv` and `assets/optimization_example.png`.
+
+---
+
 ## 🏛️ Ecosystem Integration
 
 ### Relationship to OptimetricFlow Platform
 
-This repository contains the foundational **open-source DOE and optimization engine**. 
-The full [OptimetricFlow Enterprise Platform](https://optimetricflow.cn) builds upon this to provide:
+This repository provides the **open-source DOE and optimization components** used in OptimetricFlow research workflows.
+The [OptimetricFlow platform](https://optimetricflow.cn) extends these capabilities with:
 - Advanced workflow automation
 - Interactive UI/UX for scientists
 - Automated quality reporting
