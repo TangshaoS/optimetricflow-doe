@@ -6,34 +6,42 @@
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![OptimetricFlow](https://img.shields.io/badge/Official-OptimetricFlow-blueviolet)](https://optimetricflow.cn)
 
-**FlowSense DOE** is a Python package for industrial Design of Experiments (DOE), response surface analysis, and Bayesian next-experiment suggestion. It is also used in experimental workflows within [OptimetricFlow](https://optimetricflow.cn).
+**FlowSense DOE** is a Python package for industrial Design of Experiments (DOE), response surface analysis, and Bayesian next-experiment suggestion.
 
-> **Maintenance:** This project is actively maintained as a core research module of OptimetricFlow.
+It is also used in experimental and research workflows within the OptimetricFlow ecosystem.
 
-![FlowSense DOE Preview](assets/preview.png)
+---
+
+## 📌 Maintenance Status
+
+This project is maintained as a core research module of the OptimetricFlow ecosystem and receives updates when new DOE and optimization capabilities are developed.
+
+---
 
 ## 🌟 Key Features
 
-- **Classical DOE Generation**: Full/Fractional Factorial, Box-Behnken, and Central Composite Design (CCD).
-- **Advanced Screening**: Plackett-Burman and Definitive Screening Design (DSD).
-- **Mixture Designs**: Simplex Lattice, Simplex Centroid, and constrained mixtures.
-- **Sequential Bayesian Optimization**: Intelligent next-experiment suggestions using Gaussian Processes.
-- **Domain-Specific Presets**: Built-in factor templates tailored for bioprocess and chemical engineering workflows.
+* **Classical DOE Generation**: Full/Fractional Factorial, Box-Behnken, and Central Composite Design (CCD).
+* **Advanced Screening**: Plackett-Burman and Definitive Screening Design (DSD).
+* **Mixture Designs**: Simplex Lattice, Simplex Centroid, and constrained mixtures.
+* **Sequential Bayesian Optimization**: Intelligent next-experiment suggestions using Gaussian Processes.
+* **Domain-Specific Presets**: Built-in factor templates tailored for bioprocess and chemical engineering workflows.
 
 ---
 
 ## 🎯 Target Audience & Use Cases
 
 ### Who is this for?
-- **Process Engineers** optimizing lab and pilot-scale processes.
-- **Bioprocess & Pharma Scientists** building Quality by Design (QbD) workflows.
-- **Data Scientists** supporting industrial R&D experimental strategies.
+
+* Process engineers optimizing lab and pilot-scale processes
+* Bioprocess & pharmaceutical scientists building Quality by Design (QbD) workflows
+* Data scientists supporting industrial R&D experimental strategies
 
 ### What can you build?
-- Generate robust DOE matrices for screening or detailed response modeling.
-- Fit regression models to accurately estimate factor effects and complex interactions.
-- Utilize Bayesian optimization to minimize experimental runs while maximizing yield/quality.
-- Standardize R&D data structures using predefined domain presets.
+
+* Robust DOE experimental designs for screening and optimization
+* Response surface modeling for factor-effect estimation
+* Bayesian optimization to reduce experimental cost
+* Standardized experimental data pipelines for R&D workflows
 
 ---
 
@@ -41,13 +49,15 @@
 
 ### 1. Installation
 
-Install directly via `pip`:
+Install from source:
 
 ```bash
-pip install flowsense-doe
+git clone https://github.com/your-repo/flowsense-doe.git
+cd flowsense-doe
+pip install -e .
 ```
 
-*(Note: If not yet available on PyPI, install from source by cloning this repository).*
+---
 
 ### 2. Generate a Box-Behnken Design
 
@@ -58,12 +68,13 @@ designer = DOEDesigner()
 factors = ["Temperature", "pH", "Stir_Rate"]
 levels = [[30.0, 37.0], [6.0, 7.5], [200.0, 500.0]]
 
-# Generate the design matrix with 3 center points
 design_df = designer.box_behnken(factors, levels, center_points=3)
 print(design_df.head())
 ```
 
-### 3. Bayesian Optimization (Suggest Next Run)
+---
+
+### 3. Bayesian Optimization (Suggest Next Experiment)
 
 ```python
 import numpy as np
@@ -75,31 +86,41 @@ factors_def = [
 ]
 
 suggester = BayesianSuggester(factors_def, objective="maximize")
+
 X_obs = np.array([[30.0, 6.0], [37.0, 7.0]])
 y_obs = np.array([12.5, 24.3])
 
-# Get intelligent suggestion for the next experiment
 next_point = suggester.suggest(X_obs, y_obs)
 print("Suggested experiment:", next_point["suggestion"])
 ```
 
-> **Tip:** See `examples/run_doe.py` for a complete end-to-end workflow demonstration.
+> Tip: See `examples/run_doe.py` for a full end-to-end workflow.
 
 ---
 
 ## 📊 Real Usage Example
 
-Synthetic bioprocess dataset (temperature, pH, stir rate → antibody titer). Four corner screening runs, then Bayesian optimization suggests the next experiment:
+This example demonstrates a synthetic bioprocess optimization workflow:
+
+* Temperature
+* pH
+* Stir rate
+* → target output: antibody titer
+
+The workflow uses DOE screening followed by Bayesian optimization.
 
 ![Optimization example](assets/optimization_example.png)
 
-**Reproduce locally:**
+### Run locally:
 
 ```bash
 python examples/bioprocess_optimization.py
 ```
 
-This writes `examples/data/synthetic_fermentation.csv` and `assets/optimization_example.png`.
+This will generate:
+
+* `examples/data/synthetic_fermentation.csv`
+* `assets/optimization_example.png`
 
 ---
 
@@ -107,29 +128,49 @@ This writes `examples/data/synthetic_fermentation.csv` and `assets/optimization_
 
 ### Relationship to OptimetricFlow Platform
 
-This repository provides the **open-source DOE and optimization components** used in OptimetricFlow research workflows.
-The [OptimetricFlow platform](https://optimetricflow.cn) extends these capabilities with:
-- Advanced workflow automation
-- Interactive UI/UX for scientists
-- Automated quality reporting
-- Deployment-oriented analysis pipelines
+This repository provides the open-source DOE and optimization engine used in OptimetricFlow research workflows.
 
-### Limitations of the OSS Layer
-- Not a full ELN/LIMS replacement.
-- No built-in hardware integration for experiment execution.
+The OptimetricFlow platform builds on top of this library to provide:
+
+* Workflow automation for experiments
+* Interactive UI for scientists and engineers
+* Automated reporting and analytics pipelines
+* Deployment-ready decision support systems
+
+### Scope of this Open Source Project
+
+This library focuses on algorithmic and modeling components only.
+It does not include:
+
+* UI / dashboard systems
+* Hardware integration layers
+* Enterprise workflow orchestration
+
+---
+
+## 📦 Versioning
+
+Current version: **v0.1.0 (early research release)**
 
 ---
 
 ## 🔗 Links & Citation
 
-- **Official Website**: [optimetricflow.cn](https://optimetricflow.cn)
-- **Citation**: If this project supports your research or process development, please cite it using the provided `CITATION.cff` file.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+* Official Website: https://optimetricflow.cn
+* Citation: Please refer to CITATION.cff for academic usage
 
 ---
 
-Built with ❤️ by the **OptimetricFlow Team**
+## 📄 License
 
+This project is licensed under the MIT License.
+
+---
+
+## 👤 Maintainer
+
+Maintained by the OptimetricFlow project author.
+
+---
+
+Built with ❤️ for industrial experimentation and optimization workflows.
